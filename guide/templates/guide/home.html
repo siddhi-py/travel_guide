@@ -1,0 +1,42 @@
+{% extends "guide/base.html" %}
+{% block content %}
+<section class="bg-gradient-primary-to-secondary py-5 text-white text-center" style="background: linear-gradient(90deg, #007bff 0%, #00c6ff 100%);">
+    <div class="container">
+        <h1 class="display-4 fw-bold mb-3" style="font-family: 'Montserrat', sans-serif;">Explore the World with WanderLite</h1>
+        <p class="lead mb-4">Your trusted travel guide for discovering amazing destinations, tips, and experiences.</p>
+        <a href="{% url 'destination' %}" class="btn btn-warning btn-lg shadow">Start Exploring</a>
+    </div>
+</section>
+<section class="container py-5">
+    <h2 class="text-center text-primary mb-4">Featured Destinations</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-4 mb-4">
+            <div class="card border-0 shadow">
+                <img src='static/guide/images/goa.png' class="card-img-top" alt="Goa">
+                <div class="card-body">
+                    <h5 class="card-title text-info">Goa, India</h5>
+                    <p class="card-text">Golden beaches, vibrant nightlife, and Portuguese heritage.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card border-0 shadow">
+                <img src='static/guide/images/paris.jpg' class="card-img-top" alt="Paris">
+                <div class="card-body">
+                    <h5 class="card-title text-danger">Paris, France</h5>
+                    <p class="card-text">City of lights, romance, and world-class art and cuisine.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card border-0 shadow">
+                <img src='static/guide/images/tokiyo.jpg' class="card-img-top" alt="Tokyo">
+                <div class="card-body">
+                    <h5 class="card-title text-warning">Tokyo, Japan</h5>
+                    <p class="card-text">Tradition meets technology, temples, sushi, and neon lights.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

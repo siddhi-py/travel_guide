@@ -1,0 +1,50 @@
+
+{% extends "guide/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container py-5">
+    <h2 class="text-center text-primary mb-4">Travel Guides</h2>
+    <div class="row">
+        <div class="col-md-3 mb-4">
+            <div class="card border-0 shadow h-100">
+                <img src="{% static 'guide/images/goa.png' %}", class="card-img-top" alt="Goa Guide">
+                <div class="card-body">
+                    <h5 class="card-title text-info">Goa Guide</h5>
+                    <p class="card-text">Best beaches, nightlife, and local cuisine.</p>
+                    <a href="#" class="btn btn-outline-primary btn-sm">Read More</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card border-0 shadow h-100">
+                <img src="{% static 'guide/images/paris.jpg' %}" class="card-img-top" alt="Paris Guide">
+                <div class="card-body">
+                    <h5 class="card-title text-danger">Paris Guide</h5>
+                    <p class="card-text">Landmarks, food, and romantic spots.</p>
+                    <a href="#" class="btn btn-outline-primary btn-sm">Read More</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card border-0 shadow h-100">
+                <img src="{% static 'guide/images/tokiyo.jpg' %}" class="card-img-top" alt="Tokyo Guide">
+                <div class="card-body">
+                    <h5 class="card-title text-warning">Tokyo Guide</h5>
+                    <p class="card-text">Temples, cherry blossoms, and shopping.</p>
+                    <a href="#" class="btn btn-outline-primary btn-sm">Read More</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card border-0 shadow h-100">
+                <img src="{% static 'guide/images/sydney.jpg' %}" class="card-img-top" alt="Sydney Guide">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">Sydney Guide</h5>
+                    <p class="card-text">Opera House, beaches, and culture.</p>
+                    <a href="#" class="btn btn-outline-primary btn-sm">Read More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

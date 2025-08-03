@@ -1,0 +1,28 @@
+body {
+    background-color: #f7f9fb;
+}
+.navbar-brand {
+    font-size: 1.7rem;
+    letter-spacing: 2px;
+}
+.card {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.card:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+.bg-gradient-primary-to-secondary {
+    background: linear-gradient(90deg, #007bff 0%, #00c6ff 100%);
+}
+footer {
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+.btn-warning {
+    background-color: #ff9800;
+    border: none;
+}
+.btn-warning:hover {
+    background-color: #ffa726;
+}

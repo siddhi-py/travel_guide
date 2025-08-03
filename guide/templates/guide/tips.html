@@ -1,0 +1,27 @@
+{% extends "guide/base.html" %}
+{% block content %}
+<div class="container py-5" style="max-height: 80vh; overflow-y: auto;">
+    <h2 class="text-center text-primary mb-4">Essential Travel Tips</h2>
+    <div class="row g-4 justify-content-center">
+        {% for tip in tips %}
+        <div class="col-md-4">
+            <div class="card border-0 shadow h-100 
+                {% cycle 'bg-info text-white' 'bg-success text-white' 'bg-warning text-dark' 'bg-danger text-white' 'bg-primary text-white' 'bg-secondary text-white' %}">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        {% if forloop.counter == 1 %}<i class="bi bi-suitcase-lg"></i>{% endif %}
+                        {% if forloop.counter == 2 %}<i class="bi bi-droplet"></i>{% endif %}
+                        {% if forloop.counter == 3 %}<i class="bi bi-translate"></i>{% endif %}
+                        {% if forloop.counter == 4 %}<i class="bi bi-file-earmark-text"></i>{% endif %}
+                        {% if forloop.counter == 5 %}<i class="bi bi-people"></i>{% endif %}
+                        {% if forloop.counter == 6 %}<i class="bi bi-calendar-check"></i>{% endif %}
+                        {{ tip.title }}
+                    </h5>
+                    <p class="card-text">{{ tip.desc }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,242 @@
+{% extends "guide/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container py-5">
+    <h2 class="text-center text-primary mb-4">Top Destinations</h2>
+    <!-- Search Bar -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-6 position-relative">
+            <div class="input-group shadow rounded">
+                <span class="input-group-text bg-primary text-white" id="search-icon">
+                    <i class="bi bi-search"></i>
+                </span>
+                <input type="text" class="form-control" id="destination-search" placeholder="Search destinations..." autocomplete="off">
+            </div>
+            <div id="suggestions" class="bg-white border rounded shadow-sm mt-1" style="position: absolute; z-index: 10; width: 100%; display: none;"></div>
+        </div>
+    </div>
+    <!-- Destinations List -->
+    <div class="row g-4" id="destination-list">
+        {% for dest in destinations %}
+        <div class="col-md-4 destination-card" id="dest-{{ forloop.counter }}">
+            <div class="card border-0 shadow h-100">
+                <img src="{% static dest.image %}" class="card-img-top" alt="{{ dest.name }}">
+                <div class="card-body">
+                    <h5 class="card-title text-info">{{ dest.name }}</h5>
+                    <ul class="mb-0">
+                        {% for point in dest.points %}
+                        <li>{{ point }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<script>
+    // Destination list for search suggestions (must match your views.py)
+       const destinations = [
+        {
+            'name': 'Goa, India',
+            'image': 'guide/images/goa.png',
+            'points': [
+                "Golden beaches and vibrant nightlife.",
+                "Portuguese heritage and colonial architecture.",
+                "Best time to visit: November to February.",
+                "Try water sports like parasailing and jet skiing.",
+                "Enjoy authentic Goan seafood cuisine.",
+                "Visit historic churches and forts.",
+                "Attend lively beach festivals and parties."
+            ]
+        },
+        {
+            'name': 'Paris, France',
+            'image': 'guide/images/paris.jpg',
+            'points': [
+                "Iconic Eiffel Tower and romantic ambiance.",
+                "Explore world-class museums like the Louvre.",
+                "Stroll through charming neighborhoods like Montmartre.",
+                "Enjoy French pastries and gourmet cuisine.",
+                "Cruise on the Seine River for scenic views.",
+                "Visit Notre-Dame Cathedral and historic sites.",
+                "Best time to visit: April to June, September to October."
+            ]
+        },
+        {
+            'name': 'Tokyo, Japan',
+            'image': 'guide/images/tokiyo.jpg',
+            'points': [
+                "Blend of tradition and modernity.",
+                "Experience cherry blossoms in spring.",
+                "Visit ancient temples and shrines.",
+                "Explore vibrant districts like Shibuya and Akihabara.",
+                "Try sushi, ramen, and street food.",
+                "Efficient public transport with JR Pass.",
+                "Shop for electronics and fashion."
+            ]
+        },
+        {
+            'name': 'Sydney, Australia',
+            'image': 'guide/images/sydney.jpg',
+            'points': [
+                "Iconic Sydney Opera House and Harbour Bridge.",
+                "Relax at Bondi and Manly beaches.",
+                "Explore The Rocks historic district.",
+                "Take a ferry for stunning harbor views.",
+                "Enjoy multicultural cuisine and seafood.",
+                "Visit Taronga Zoo and Royal Botanic Garden.",
+                "Best time to visit: September to November."
+            ]
+        },
+        {
+            'name': 'Cape Town, South Africa',
+            'image': 'guide/images/capetown.jpeg',
+            'points': [
+                "Spectacular Table Mountain and cable car rides.",
+                "Tour the Cape Winelands for wine tasting.",
+                "Visit Robben Island and learn history.",
+                "Relax at Camps Bay and Clifton beaches.",
+                "Explore the V&A Waterfront for shopping.",
+                "See penguins at Boulders Beach.",
+                "Best time to visit: March to May."
+            ]
+        },
+        {
+            'name': 'New York, USA',
+            'image': 'guide/images/newyork.jpg',
+            'points': [
+                "See the Statue of Liberty and Central Park.",
+                "Visit world-class museums and galleries.",
+                "Experience Broadway shows and nightlife.",
+                "Explore diverse neighborhoods like Brooklyn.",
+                "Try classic New York pizza and bagels.",
+                "Shop on Fifth Avenue and SoHo.",
+                "Best time to visit: Spring and Fall."
+            ]
+        },
+        {
+            'name': 'Rome, Italy',
+            'image': 'guide/images/rome.jpg',
+            'points': [
+                "Marvel at the Colosseum and Roman Forum.",
+                "Visit Vatican City and St. Peter's Basilica.",
+                "Enjoy authentic Italian gelato and pasta.",
+                "Stroll through picturesque piazzas.",
+                "See ancient ruins and Renaissance art.",
+                "Throw a coin in Trevi Fountain.",
+                "Best time to visit: April to June, September to October."
+            ]
+        },
+        {
+            'name': 'Bangkok, Thailand',
+            'image': 'guide/images/bangkok.jpg',
+            'points': [
+                "Explore ornate temples and palaces.",
+                "Shop at vibrant street markets.",
+                "Enjoy Thai street food and floating markets.",
+                "Cruise the Chao Phraya River.",
+                "Experience lively nightlife and rooftop bars.",
+                "Visit the Grand Palace and Wat Pho.",
+                "Best time to visit: November to February."
+            ]
+        },
+        {
+            'name': 'Rio de Janeiro, Brazil',
+            'image': 'guide/images/rio.jpg',
+            'points': [
+                "See Christ the Redeemer statue.",
+                "Relax on Copacabana and Ipanema beaches.",
+                "Enjoy samba music and Carnival festivities.",
+                "Take a cable car to Sugarloaf Mountain.",
+                "Explore Tijuca National Park.",
+                "Try Brazilian barbecue and street snacks.",
+                "Best time to visit: December to March."
+            ]
+        },
+        {
+            'name': 'Istanbul, Turkey',
+            'image': 'guide/images/istanbul.jpg',
+            'points': [
+                "Visit Hagia Sophia and Blue Mosque.",
+                "Shop at the Grand Bazaar and Spice Market.",
+                "Cruise the Bosphorus for city views.",
+                "Enjoy Turkish tea and baklava.",
+                "Explore historic palaces and museums.",
+                "Experience vibrant street life.",
+                "Best time to visit: April to June, September to November."
+            ]
+        },
+        {
+            'name': 'Dubai, UAE',
+            'image': 'guide/images/dubai.jpg',
+            'points': [
+                "See Burj Khalifa and Dubai Fountain.",
+                "Shop at luxury malls and souks.",
+                "Relax on Jumeirah Beach.",
+                "Go on a desert safari adventure.",
+                "Visit Palm Jumeirah and Atlantis.",
+                "Enjoy global cuisine and fine dining.",
+                "Best time to visit: November to March."
+            ]
+        },
+        {
+            'name': 'London, UK',
+            'image': 'guide/images/london.jpg',
+            'points': [
+                "See Big Ben and Buckingham Palace.",
+                "Explore world-class museums and galleries.",
+                "Enjoy afternoon tea and British cuisine.",
+                "Stroll through Hyde Park and gardens.",
+                "Shop at Oxford Street and Camden Market.",
+                "Experience West End theatre shows.",
+                "Best time to visit: May to September."
+            ]
+        }
+    ]
+    
+    const searchInput = document.getElementById('destination-search');
+    const suggestionsBox = document.getElementById('suggestions');
+
+    searchInput.addEventListener('input', function() {
+        const query = this.value.trim().toLowerCase();
+        suggestionsBox.innerHTML = '';
+        if (query === '') {
+            suggestionsBox.style.display = 'none';
+            return;
+        }
+        const matches = destinations.filter(d => d.name.toLowerCase().includes(query));
+        if (matches.length === 0) {
+            suggestionsBox.innerHTML = '<div class="p-2 text-danger">no place in list</div>';
+            suggestionsBox.style.display = 'block';
+            return;
+        }
+        matches.forEach(d => {
+            const div = document.createElement('div');
+            div.className = 'p-2 suggestion-item text-primary';
+            div.style.cursor = 'pointer';
+            div.textContent = d.name;
+            div.onclick = function() {
+                // Scroll to the destination card and highlight
+                const card = document.getElementById(d.id);
+                if (card) {
+                    card.scrollIntoView({behavior: 'smooth', block: 'center'});
+                    card.classList.add('border', 'border-primary');
+                    setTimeout(() => card.classList.remove('border', 'border-primary'), 1500);
+                }
+                searchInput.value = d.name;
+                suggestionsBox.style.display = 'none';
+            };
+            suggestionsBox.appendChild(div);
+        });
+        suggestionsBox.style.display = 'block';
+    });
+
+    // Hide suggestions when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!searchInput.contains(e.target) && !suggestionsBox.contains(e.target)) {
+            suggestionsBox.style.display = 'none';
+        }
+    });
+</script>
+{% endblock %}
